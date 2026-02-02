@@ -1,0 +1,31 @@
+p {
+    background-color: tomato;
+}
+.parrafohover:hover {
+    background-color: yellow;
+}
+
+#parrafo2 {
+    color: blue;
+}
+
+div {
+    background-color: darkblue;
+
+    & p {
+        background-color: blueviolet;
+    }
+}
+
+/* div > p {
+    background-color: blueviolet;
+} */
+
+body {
+    background-color: green;
+}
+
+h1{
+    background-color: cyan;
+    width: 34%;
+}

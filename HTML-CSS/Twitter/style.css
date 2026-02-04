@@ -1,0 +1,102 @@
+html{
+  height: 100vh;
+}
+ 
+body {
+    height: auto;
+    width: auto;
+    min-height: 100vh;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+    background-color: darkslategrey;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+  
+    & .twit{
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        flex-direction: column;
+        border-style: groove;
+        border-radius: 5pt;
+        padding: 20px;
+        width:70%;
+
+        & .header {
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+
+            & .imagen {
+                height: 75px;
+                width: 75px;
+                border-radius: 50%;
+                object-fit: cover;
+                }
+            & .username {
+                width: 100%;
+                margin-left: 10pt;
+
+                & h2 {
+                font-weight: bold;
+                margin: 0;
+                }
+
+                & h3 {
+                margin-left: 10px;
+                color: grey;
+                margin: 0;
+                }
+
+               
+            }
+            & .flechita {
+             width: 15pt;
+             padding: 20px;
+            }
+        }
+        & .contenido{
+            margin-top: 10pt;
+            margin-left: 7pt;
+            & p{
+                margin: 0pt;
+            }
+            & .publicacion{
+                margin-top: 10pt;
+                margin-bottom: 3pt;
+                color: gray;
+               }   
+        }
+        & .engagement{
+            display: flex;
+            gap: 30px;
+            margin-top: 10pt;
+            margin-bottom: 10pt;
+            border-style: solid;
+            border-color: rgb(205, 205, 205);
+            border-left: 0pt;
+            border-right: 0pt;
+            & p{
+                font-weight: bolder;
+                margin-left: 7pt;
+            }
+            
+        }
+        & .usuario{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding: 5pt;
+        }
+    }  
+} 
+
+@media all and (max-width:600px){
+    & #id{
+        background-color: rgb(191, 102, 89);
+    }
+}

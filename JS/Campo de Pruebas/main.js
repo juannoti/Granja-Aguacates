@@ -123,3 +123,15 @@ for (const palabra of palabras){
 }
 
 console.log(palabraMasLarga)
+
+//Ejercicio 8
+
+const numeroFact = prompt("Introduzca un número")
+let potencial = 1
+for (let contador = 1; contador<=numeroFact; contador++){
+    potencial = potencial*contador
+}
+
+console.log(potencial)
+
+

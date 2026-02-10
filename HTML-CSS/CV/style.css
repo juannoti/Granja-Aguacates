@@ -1,21 +1,15 @@
-/* Estilo F1 Racing - Tema Oscuro/Neón */
+
 :root {
   --bg-oscuro: #050811;
-  /* Azul marino profundo */
   --bg-tarjeta: #0d121f;
-  /* Azul noche para tarjetas */
   --neon-azul: #3b82f6;
-  /* Azul real brillante */
   --neon-lima: #00f3ff;
-  /* Cian eléctrico (sustituye al amarillo) */
   --texto-principal: #ffffff;
   --texto-secundario: #a4b3d1;
-  /* Gris azulado para el texto */
   --fuente-encabezado: "Russo One", sans-serif;
   --fuente-cuerpo: "Rubik", sans-serif;
 }
 
-/* RESET GLOBAL (Siempre fuera para que afecte a todo el documento) */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -74,10 +68,6 @@
   }
 }
 
-/* 
-   EXTREME NESTING: Todo el diseño anidado dentro de body 
-   para una estructura mental totalmente jerárquica.
-*/
 body {
   background-color: var(--bg-oscuro);
   font-family: var(--fuente-cuerpo);
@@ -85,37 +75,12 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
-  background-image:
-    radial-gradient(circle at 50% 0%, #0d121f 0%, #050811 100%),
-    repeating-linear-gradient(
-      45deg,
-      rgba(59, 130, 246, 0.03) 0,
-      rgba(59, 130, 246, 0.03) 1px,
-      transparent 1px,
-      transparent 20px
-    );
-  background-blend-mode: overlay;
-  background-attachment: fixed;
-  animation: moverFondo 60s linear infinite;
-
-  .superposicion-fondo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(5, 8, 17, 0.92);
-    z-index: -1;
-  }
-
-  /* CONTENEDOR PRINCIPAL */
+ 
   .contenedor {
     max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
   }
-
-  /* ESTRUCTURA DE SECCIONES */
   section {
     padding: 80px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -176,8 +141,7 @@ body {
     }
   }
 
-  /* NAVEGACIÓN */
-  .navegacion-principal {
+  .menu-superior {
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -211,15 +175,14 @@ body {
     }
   }
 
-  /* SECCIÓN JUAN (ANTERIOR HERO) */
-  .contenedor-Juan {
+  .contenedor-imagen {
     min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
 
-    .Juan-dividido {
+    .imagen-dividido {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -227,7 +190,7 @@ body {
       padding: 40px 0;
     }
 
-    .Juan-texto {
+    .imagen-texto {
       flex: 1;
       text-align: left;
       z-index: 2;
@@ -285,7 +248,7 @@ body {
       }
     }
 
-    .insignias-Juan {
+    .insignias-imagen {
       display: flex;
       gap: 15px;
       margin-top: 20px;
@@ -317,8 +280,7 @@ body {
     }
   }
 
-  /* APTITUDES */
-  .grid-aptitudes {
+  .lista-aptitudes {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
@@ -369,7 +331,6 @@ body {
     }
   }
 
-  /* CARRUSELES */
   .contenedor-carrusel {
     width: 100%;
     overflow: hidden;
@@ -431,7 +392,6 @@ body {
     }
   }
 
-  /* IDIOMAS */
   .grid-idiomas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -479,7 +439,6 @@ body {
     }
   }
 
-  /* CURSOS Y VOLUNTARIADO */
   #cursos,
   #voluntariado {
     ul li {
@@ -504,7 +463,6 @@ body {
     }
   }
 
-  /* MEDIOS / VIDEO */
   #medios {
     .contenedor-video {
       position: relative;
@@ -558,7 +516,6 @@ body {
     }
   }
 
-  /* CONTACTO */
   .grid-contacto {
     display: flex;
     justify-content: center;
@@ -598,7 +555,6 @@ body {
     }
   }
 
-  /* INFINITE SCROLL */
   #proyectos {
     .contenedor-carrusel {
       overflow: hidden;

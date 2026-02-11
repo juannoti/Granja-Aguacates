@@ -1,16 +1,23 @@
-/* simplified CV style - Pure Flat Version (No Nesting) */
-
+/* Variables para colores y fuentes */
 :root {
-    --bg-oscuro: #121212;
-    --bg-tarjeta: #1e1e1e;
-    --color-primario: #4dabf7;
-    --color-acentuado: #3bc9db;
-    --texto-principal: #e0e0e0;
-    --texto-secundario: #b0b0b0;
+    --fondo-principal: #121212;
+    --fondo-bloques: #1e1e1e;
+    --azul-destacado: #4dabf7;
+    --azul-suave: #3bc9db;
+    --blanco-texto: #e0e0e0;
+    --gris-texto: #b0b0b0;
     --fuente-encabezado: "Russo One", sans-serif;
     --fuente-cuerpo: "Rubik", sans-serif;
 }
 
+/* Para el scroll más suave y que se vea el título con un pequeño margen arriba*/
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 3rem;
+    /*rem es una unidad relativa para los cambios de tamaño, también para las fuentes*/
+}
+
+/* Con esto funciona en cualquier navegador sin descuadrarse */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,28 +25,30 @@
 }
 
 body {
-    background-color: var(--bg-oscuro);
-    color: var(--texto-principal);
+    background-color: var(--fondo-principal);
+    color: var(--blanco-texto);
     font-family: var(--fuente-cuerpo);
     line-height: 1.6;
 
-
-    .contenedor {
+    .contenedor-general {
         max-width: 1000px;
         margin: 0 auto;
         padding: 20px;
     }
 
-    /* Menú Superior */
+    /* Bloque del menú de arriba*/
     .menu-superior {
         background: #000;
-        padding: 1rem 0;
-        position: sticky;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
         top: 0;
+        position: sticky;
         z-index: 1000;
-        border-bottom: 2px solid var(--color-primario);
+        /*Con sticky se queda siempre aunque bajes, y con z-index se superpone siempre encima de todo*/
+        border-bottom: 2px solid var(--azul-destacado);
     }
 
+    /* Colocamos los enlaces del menú*/
     .menu-superior ul {
         list-style: none;
         display: flex;
@@ -48,60 +57,69 @@ body {
         gap: 1.5rem;
     }
 
+    /* Ponemos bonitos los enlaces del menú y el hover*/
     .menu-superior a {
-        color: var(--texto-principal);
+        color: var(--blanco-texto);
         text-decoration: none;
         font-weight: 500;
         font-size: 0.9rem;
         font-family: var(--fuente-encabezado);
-        text-transform: uppercase;
     }
 
     .menu-superior a:hover {
-        color: var(--color-primario);
+        color: var(--azul-destacado);
     }
 
-    /* Header / Hero */
-    .imagen-dividido {
+    /* Header */
+    .contenedor-intro {
+        max-width: 1000px;
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 2rem;
-        padding: 4rem 0;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 
     .texto-nombre {
         font-family: var(--fuente-encabezado);
         font-size: 3.5rem;
         margin-bottom: 0.5rem;
-        color: var(--color-primario);
+        color: var(--azul-destacado);
     }
 
     .texto-rol {
         font-size: 1.3rem;
-        color: var(--color-acentuado);
+        color: var(--azul-suave);
         font-family: var(--fuente-encabezado);
         margin-bottom: 1rem;
     }
 
-    .insignias-imagen {
+    .insignias {
         display: flex;
         gap: 0.5rem;
         margin-top: 1rem;
     }
 
     .insignia {
-        background-color: var(--bg-tarjeta);
-        border: 1px solid var(--color-primario);
-        padding: 0.2rem 0.8rem;
+        background-color: var(--fondo-bloques);
+        border: 1px solid var(--azul-destacado);
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
         font-size: 0.8rem;
         border-radius: 4px;
         font-family: var(--fuente-encabezado);
         transition: all 0.3s ease;
+        /* Con ease la transición rebota*/
     }
 
     .insignia:hover {
-        background-color: var(--color-primario);
+        background-color: var(--azul-destacado);
         color: #000;
     }
 
@@ -109,12 +127,13 @@ body {
     .mascara-imagen {
         width: 250px;
         height: 300px;
-        border: 2px solid var(--color-primario);
+        border: 2px solid var(--azul-destacado);
         position: relative;
         border-radius: 8px;
         transition: transform 0.3s ease;
     }
 
+    /* Creamos el marco en CSS*/
     .mascara-imagen::before {
         content: "";
         position: absolute;
@@ -122,7 +141,7 @@ body {
         left: 15px;
         right: -15px;
         bottom: -15px;
-        border: 2px solid var(--color-acentuado);
+        border: 2px solid var(--azul-suave);
         z-index: -1;
         border-radius: 8px;
         transition: all 0.3s ease;
@@ -144,68 +163,56 @@ body {
         display: block;
     }
 
-    /* Secciones Genéricas */
+    /* Secciones del documento con los separadores*/
     section {
-        padding: 3rem 0;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        /* 3 para que coincidan los separadores con el margin del scroll al pulsar el menú*/
         border-bottom: 1px solid #333;
     }
 
+    /* A partir de aquí se sigue poniendo section delante de cada etiqueta para que solo afecte a los elementos dentro de section, que hay algunos fuera*/
     section h2 {
         font-family: var(--fuente-encabezado);
         margin-bottom: 1.5rem;
-        color: var(--color-primario);
+        color: var(--azul-destacado);
         font-size: 2.2rem;
-        border-left: 6px solid var(--color-primario);
+        border-left: 6px solid var(--azul-destacado);
         padding-left: 15px;
         text-transform: uppercase;
+        /* Forzamos el texto en mayúscula que cambiar en el HTML es más vuelta */
     }
 
     section h3 {
-        color: var(--color-acentuado);
+        color: var(--azul-suave);
         margin: 1.5rem 0 1rem;
         text-transform: uppercase;
     }
 
     section p {
-        color: var(--texto-secundario);
+        color: var(--gris-texto);
         margin-bottom: 1rem;
     }
 
-    section ul {
-        list-style: none;
-    }
-
-    section ul li {
-        position: relative;
-        padding-left: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    section ul li::before {
-        content: "•";
-        color: var(--color-primario);
-        position: absolute;
-        left: 0;
-    }
-
     section a {
-        color: var(--color-acentuado);
+        color: var(--azul-suave);
         text-decoration: none;
         position: relative;
-        padding: 0 2px;
+        padding-left: 2px;
+        padding-right: 2px;
         transition: all 0.3s ease;
         border-bottom: 1px solid rgba(59, 201, 219, 0.3);
     }
 
     section a:hover {
-        color: var(--color-primario);
+        color: var(--azul-destacado);
         background-color: rgba(77, 171, 247, 0.1);
-        border-bottom: 1px solid var(--color-primario);
+        border-bottom: 1px solid var(--azul-destacado);
         border-radius: 2px;
     }
 
-    /* Aptitudes */
-    #aptitudes .lista-aptitudes {
+    /* Colocamos las aptitudes */
+    .lista-aptitudes {
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
@@ -213,8 +220,11 @@ body {
     }
 
     .tarjeta-aptitud {
-        background-color: var(--bg-tarjeta);
-        padding: 0.8rem 1.2rem;
+        background-color: var(--fondo-bloques);
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
         border-radius: 4px;
         font-weight: 600;
         text-transform: uppercase;
@@ -224,13 +234,13 @@ body {
     }
 
     .tarjeta-aptitud:hover {
-        background-color: var(--color-primario);
+        background-color: var(--azul-destacado);
         color: #000;
-        border-color: var(--color-primario);
+        border-color: var(--azul-destacado);
     }
 
-    /* Herramientas (Cápsulas Pequeñas) */
-    #herramientas .lista-herramientas {
+    /* Colocamos las herramientas */
+    .lista-herramientas {
         display: flex;
         flex-wrap: wrap;
         gap: 0.6rem;
@@ -239,33 +249,35 @@ body {
 
     .etiqueta-herramienta {
         background-color: #333;
-        padding: 0.25rem 0.8rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
         font-size: 0.8rem;
         border-radius: 20px;
-        color: var(--texto-principal);
+        color: var(--blanco-texto);
         transition: all 0.3s ease;
         border: 1px solid transparent;
         display: block;
-        text-transform: none;
-        font-weight: normal;
     }
 
     .etiqueta-herramienta:hover {
-        background-color: var(--color-primario);
+        background-color: var(--azul-destacado);
         color: #000;
-        border-color: var(--color-primario);
+        border-color: var(--azul-destacado);
         transform: translateY(-2px);
     }
 
-    /* Idiomas */
+    /* Colocamos los idiomas */
     .grid-idiomas {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        /* Para que se adapte a la pantalla, mejor así que con querys*/
         gap: 1.5rem;
     }
 
     .item-idioma {
-        background-color: var(--bg-tarjeta);
+        background-color: var(--fondo-bloques);
         padding: 1.2rem;
         border-radius: 8px;
     }
@@ -276,20 +288,44 @@ body {
         border-radius: 5px;
         margin-top: 5px;
         overflow: hidden;
+        /* Por si se sale la barra de nivel */
     }
 
     .barra-nivel {
-        background: linear-gradient(90deg, var(--color-primario), var(--color-acentuado));
+        background: linear-gradient(90deg, var(--azul-destacado), var(--azul-suave));
         height: 100%;
+        transition: width 1.5s ease-out;
+        /* Animación suave para el progreso */
     }
 
-    /* Proyectos (Carrusel Manual) */
-    #proyectos .contenedor-carrusel {
+    /* Botón para reiniciar la animación de idiomas */
+    .boton-reinicio {
+        display: block;
+        margin: 1.5rem auto 0;
+        background-color: transparent;
+        color: var(--azul-destacado);
+        border: 2px solid var(--azul-destacado);
+        padding: 0.6rem 1.2rem;
+        border-radius: 25px;
+        font-family: var(--fuente-encabezado);
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+    }
+
+    .boton-reinicio:hover {
+        background-color: var(--azul-destacado);
+        color: #000;
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(77, 171, 247, 0.4);
+    }
+
+    /* Carrusel con barrita */
+    .contenedor-carrusel {
         width: 100%;
         overflow-x: auto;
         padding-bottom: 2rem;
         scrollbar-width: thin;
-        scrollbar-color: var(--color-primario) transparent;
+        scrollbar-color: var(--azul-destacado) transparent;
     }
 
     .pista-carrusel {
@@ -300,58 +336,154 @@ body {
 
     .item-carrusel {
         flex: 0 0 350px;
-        background-color: var(--bg-tarjeta);
+        background-color: var(--fondo-bloques);
         padding: 1.5rem;
         border-radius: 8px;
-        border-top: 4px solid var(--color-primario);
+        border-top: 4px solid var(--azul-destacado);
         transition: transform 0.3s;
     }
 
+    /* Al pasar el ratón se mueve un poquito */
     .item-carrusel:hover {
         transform: translateY(-5px);
     }
 
-    /* Grillas (Educación, Experiencia, Deporte) */
+    /* Quitamos los puntos predeterminados de lista para poner los azulitos nosotros */
+    .lista-puntos {
+        list-style: none;
+    }
+
+    .lista-puntos li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .lista-puntos li::before {
+        content: "•";
+        color: var(--azul-destacado);
+        position: absolute;
+        left: 0;
+        /* Con esto ponemos los puntitos azules delante de cada li */
+    }
+
+
+    /* Grids de las secciones formación, experiencia y deporte */
     .pista-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Lo mismo que con los idiomas*/
         gap: 1.5rem;
         width: 100%;
     }
 
-    .tarjeta-edu,
-    .item-grid {
-        background-color: var(--bg-tarjeta);
+    /* Tarjetas de las secciones formación, experiencia y deporte */
+    .tarjeta-cv {
+        background-color: var(--fondo-bloques);
         padding: 1.5rem;
         border-radius: 8px;
-        border-top: 4px solid var(--color-primario);
+        border-top: 4px solid var(--azul-destacado);
         transition: transform 0.3s;
     }
 
-    .tarjeta-edu:hover,
-    .item-grid:hover {
+    /* Al pasar el ratón se mueve un poquito, como antes*/
+    .tarjeta-cv:hover {
         transform: translateY(-5px);
     }
 
-    .insignia-ano {
+    .fechas {
         font-size: 0.8rem;
-        color: var(--color-acentuado);
+        color: var(--azul-suave);
         display: block;
         margin-bottom: 0.5rem;
         font-weight: bold;
     }
 
-    /* Video */
+    /* Galería de imágenes (Contenedor)*/
+    .contenedor-galeria-imagenes {
+        width: 100%;
+        overflow-x: auto;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        scrollbar-width: thin;
+        scrollbar-color: var(--azul-destacado) transparent;
+    }
+
+    /* Colocamos las imágenes */
+    .pista-galeria-imagenes {
+        display: flex;
+        gap: 1.5rem;
+        width: max-content;
+    }
+
+    /* Ponemos un item por foto para poder poner los textos después*/
+    .item-galeria {
+        position: relative;
+        overflow: hidden;
+        /* Primer paso para "ocultar" el texto */
+        border-radius: 8px;
+        height: 250px;
+        width: 380px;
+        border: 2px solid var(--azul-destacado);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Imegenes dentro de los items */
+    .item-galeria img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    /* Textos de las imágenes */
+    .item-galeria figcaption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.85);
+        color: #fff;
+        padding: 1rem;
+        font-size: 0.85rem;
+        transform: translateY(100%);
+        /* Segundo paso para "ocultar" el texto, al trasladarlo tanto lo sacamos de la vista */
+        transition: transform 0.3s ease;
+        text-align: center;
+        line-height: 1.4;
+    }
+
+    /* Al pasar el ratón, se mueve el item, aparece el texto y se oscurece la imagen */
+    .item-galeria:hover {
+        transform: scale(1.1);
+        border-color: var(--azul-suave);
+        box-shadow: 0 8px 25px rgba(77, 171, 247, 0.4);
+    }
+
+    .item-galeria:hover figcaption {
+        transform: translateY(0);
+        /* Recuperamos el texto */
+    }
+
+    .item-galeria:hover img {
+        transform: scale(1.1);
+        filter: brightness(0.5);
+    }
+
+    /* Video Youtube*/
     .contenedor-video {
         position: relative;
         width: 100%;
         max-width: 800px;
         margin: 2rem auto 0;
         aspect-ratio: 16 / 9;
-        background-color: var(--bg-tarjeta);
+        background-color: var(--fondo-bloques);
         border-radius: 12px;
         overflow: hidden;
-        border: 2px solid var(--color-primario);
+        border: 2px solid var(--azul-destacado);
     }
 
     .enlace-video {
@@ -373,7 +505,7 @@ body {
         left: 50%;
         transform: translate(-50%, -50%);
         font-size: 4rem;
-        color: var(--color-primario);
+        color: var(--azul-destacado);
         background-color: rgba(0, 0, 0, 0.6);
         width: 80px;
         height: 80px;
@@ -385,87 +517,65 @@ body {
     }
 
     .enlace-video:hover .icono-play {
-        background-color: var(--color-primario);
+        background-color: var(--azul-destacado);
         color: #000;
         transform: translate(-50%, -50%) scale(1.1);
-    }
-
-    /* Carrusel de Imágenes (Medios / Galería) */
-    .contenedor-carrusel-imagenes {
-        width: 100%;
-        overflow-x: auto;
-        padding: 1rem 0 2rem;
-        margin-bottom: 2rem;
-        scrollbar-width: thin;
-        scrollbar-color: var(--color-primario) transparent;
-    }
-
-    .pista-carrusel-imagenes {
-        display: flex;
-        gap: 1.5rem;
-        width: max-content;
-    }
-
-    .pista-carrusel-imagenes img {
-        height: 250px;
-        width: 380px;
-        border-radius: 8px;
-        border: 2px solid var(--color-primario);
-        transition: all 0.3s ease;
-        object-fit: cover;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .pista-carrusel-imagenes img:hover {
-        transform: scale(1.03);
-        border-color: var(--color-acentuado);
-        box-shadow: 0 8px 25px rgba(77, 171, 247, 0.4);
     }
 
     /* Contacto */
     .grid-contacto {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        /* Lo mismo que con los idiomas y las secciones anteriores*/
         gap: 1rem;
         margin-top: 2rem;
     }
 
     .tarjeta-contacto {
-        background-color: var(--bg-tarjeta);
+        background-color: var(--fondo-bloques);
         padding: 1.2rem;
         text-align: center;
-        text-decoration: none;
-        color: var(--texto-principal);
-        border: 1px solid var(--color-primario);
+        color: var(--blanco-texto);
+        border: 1px solid var(--azul-destacado);
         border-radius: 8px;
         transition: background-color 0.3s, color 0.3s;
         font-family: var(--fuente-encabezado);
-        text-transform: uppercase;
     }
 
     .tarjeta-contacto:hover {
-        background-color: var(--color-primario);
+        background-color: var(--azul-destacado);
         color: #000;
     }
 
-    /* Responsive */
+    /* Para que funcione en otras pantallas */
     @media (max-width: 768px) {
-        .imagen-dividido {
+        .contenedor-intro {
             flex-direction: column-reverse;
             text-align: center;
-            padding: 2rem 0;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
         }
 
         .texto-nombre {
             font-size: 2.5rem;
         }
 
-        .insignias-imagen {
+        .insignias {
             justify-content: center;
+        }
+
+        section {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
         }
 
         section h2 {
             font-size: 1.8rem;
+        }
+
+        .item-galeria {
+            width: 85vw;
+            height: 220px;
         }
     }
 

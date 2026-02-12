@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Primer Mapa</title>
+    <script src="main.js" defer></script>
+    <script
+      type="module"
+      src="https://js.arcgis.com/calcite-components/3.3.3/calcite.esm.js"
+    ></script>
+
+    <script src="https://js.arcgis.com/4.34/"></script>
+
+    <script
+      type="module"
+      src="https://js.arcgis.com/4.34/map-components/"
+    ></script>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body></body>
+  <arcgis-map basemap="arcgis/newspaper" center="-3.69, 40.45" zoom="15">
+    <arcgis-zoom slot="top-left"></arcgis-zoom>
+    </arcgis-map>
+</html>

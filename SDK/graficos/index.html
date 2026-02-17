@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gráficos</title>
+    <title>Escena</title>
     <script type="module" src="main.js" defer></script>
     <script
       type="module"
@@ -29,8 +29,20 @@
     </style>
   </head>
   <body>
-    <arcgis-map basemap="topo-vector"></arcgis-map>
-
-    <div id="viewDiv"></div>
+    <arcgis-scene
+      basemap="topo-vector"
+      camera-position="-3.7, 40.42, 500"
+      camera-tilt="85"
+      camera-heading="340"
+      ><arcgis-zoom slot="top-left"></arcgis-zoom>
+      <arcgis-navigation-toggle slot="top-left"></arcgis-navigation-toggle>
+      <arcgis-compass slot="top-left"></arcgis-compass>
+      </arcgis-scene>
+    <div id="viewDiv">
+      <button class="boton1">Vista 1</button>
+      <button class="boton2">Vista 2</button>
+      <button class="boton3">Vista 3</button>
+      <button class="boton4">Vista 4</button>
+    </div>
   </body>
 </html>

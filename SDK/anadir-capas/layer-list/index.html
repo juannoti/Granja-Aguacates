@@ -3,15 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gráficos</title>
+    <title>BaseMaps</title>
     <script type="module" src="main.js" defer></script>
     <script
       type="module"
       src="https://js.arcgis.com/calcite-components/3.3.3/calcite.esm.js"
     ></script>
-
     <script src="https://js.arcgis.com/4.34/"></script>
-
     <script
       type="module"
       src="https://js.arcgis.com/4.34/map-components/"
@@ -29,8 +27,13 @@
     </style>
   </head>
   <body>
-    <arcgis-map basemap="topo-vector"></arcgis-map>
-
+    <arcgis-map item-id="67672f754f654b1b8965734404ff599f">
+     <arcgis-basemap-toggle
+    slot="top-right"
+    show-title
+    next-basemap = "arcgis/newspaper"
+  ></arcgis-basemap-toggle>
+    </arcgis-map>
     <div id="viewDiv"></div>
   </body>
 </html>

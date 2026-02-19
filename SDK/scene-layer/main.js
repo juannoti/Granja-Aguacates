@@ -1,59 +1,31 @@
-// Importamos 
+const SceneLayer = await $arcgis.import("@arcgis/core/layers/SceneLayer.js");
 
-const Point = await $arcgis.import("@arcgis/core/geometry/Point.js")
+const SnowyWeather = await $arcgis.import("@arcgis/core/views/3d/environment/SnowyWeather.js");
 
-// Añadimos puntos al mapa
+const arcgisScene = document.querySelector("arcgis-scene");
 
-// Geometría
+arcgisScene.addEventListener(
+  "arcgisViewReadyChange",
+  (eventoViewReadyChange) => {
+    const capa = new SceneLayer({
+      portalItem: {
+        id: "c444b24b184c4523a5dc96248bfea4e1",
+      },
+    });
 
-const geometriaPunto = new Point({
-latitude: -4,
-longitude: 41.4
-})
-
-// Simbología
-
-const SimpleMarkerSymbol = await $arcgis.import("@arcgis/core/symbols/SimpleMarkerSymbol.js");
-
-const simbologiaPunto = new SimpleMarkerSymbol({
-  angle: 0,
-  color: [36,139,198,1],
-  outline: {
-    cap: "round",
-    color: [6,73,111,1],
-    join: "round",
-    miterLimit: 1,
-    style: "short-dash-dot-dot",
-    width: 1
+    arcgisScene.map.add(capa);
+    arcgisScene.view.environment.weather= new SnowyWeather()
   },
-  path: "undefined",
-  size: 16,
-  style: "diamond",
-  xoffset: 0,
-  yoffset: 0
+);
+
+const boton = document.querySelector(".boton1");
+
+boton.addEventListener("click", () => {
+  arcgisScene.view.goTo({
+    center: [-3.600001, 40.0325],
+  });
+
+  
 });
 
-// Unimos geometría y simbología
 
-const Graphic = await $arcgis.import("@arcgis/core/Graphic.js");
-
-const graficoPunto = new Graphic({
-  geometry:geometriaPunto,
-  symbol:simbologiaPunto
-})
-
-// Creo una capa gráfica 
-
-const GraphicsLayer = await $arcgis.import("@arcgis/core/layers/GraphicsLayer.js");
-
-const capaGrafica = new GraphicsLayer()
-
-capaGrafica.add(graficoPunto)
-
-// Accedemos al mapa
-
-const arcgisMap = document.querySelector('arcgis-map')
-
-arcgisMap.addEventListener('arcgisViewReadyChange', ()=>{
-  arcgisMap.map.add(capaGrafica)
-})

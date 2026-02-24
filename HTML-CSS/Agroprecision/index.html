@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plataforma Agricultura de Precisión</title>
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.29/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.29/"></script>
+
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        font-family: system-ui, sans-serif;
+      }
+
+      #app {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+      }
+
+      /* Barra superior */
+      #header {
+        height: 50px;
+        background: #1b5e20;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        box-sizing: border-box;
+        justify-content: space-between;
+      }
+
+      #header .title {
+        font-weight: 600;
+      }
+
+      /* Navegación tipo Experience Builder */
+      #nav {
+        display: flex;
+        background: #eeeeee;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .nav-item {
+        padding: 10px 16px;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .nav-item.active {
+        background: white;
+        border-bottom: 2px solid #1b5e20;
+        font-weight: 600;
+      }
+
+      /* Contenido principal */
+      #content {
+        flex: 1;
+        display: flex;
+        height: calc(100% - 50px - 40px);
+      }
+
+      .page {
+        display: none;
+        height: 100%;
+        width: 100%;
+      }
+
+      .page.active {
+        display: flex;
+      }
+
+      /* Layout mapa + panel lateral */
+      .layout-map {
+        display: flex;
+        height: 100%;
+        width: 100%;
+      }
+
+      #sidebar {
+        width: 30%;
+        background: #f7f7f7;
+        padding: 16px;
+        box-sizing: border-box;
+        overflow-y: auto;
+        border-right: 1px solid #ddd;
+      }
+
+      #mapViewDiv {
+        flex: 1;
+      }
+
+      .kpi {
+        background: white;
+        padding: 12px;
+        margin-bottom: 12px;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+
+      .section-title {
+        margin-top: 0;
+      }
+
+      /* Otras páginas */
+      .page-inner {
+        padding: 16px;
+        box-sizing: border-box;
+        width: 100%;
+        overflow-y: auto;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 8px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 6px 8px;
+        font-size: 14px;
+      }
+
+      th {
+        background: #f0f0f0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div id="header">
+        <div class="title">Plataforma Integral de Agricultura de Precisión</div>
+        <div>Usuario: Juan</div>
+      </div>
+
+      <div id="nav">
+        <div class="nav-item active" data-page="dashboard">Dashboard</div>
+        <div class="nav-item" data-page="analisis">Análisis</div>
+        <div class="nav-item" data-page="tareas">Tareas y Procesos</div>
+        <div class="nav-item" data-page="modelo">Modelo de Datos</div>
+        <div class="nav-item" data-page="ayuda">Ayuda</div>
+      </div>
+
+      <div id="content">
+        <!-- Página Dashboard -->
+        <div id="page-dashboard" class="page active">
+          <div class="layout-map">
+            <div id="sidebar">
+              <h3 class="section-title">Estado general del cultivo</h3>
+
+              <div class="kpi">
+                <strong>NDVI medio</strong>
+                <div id="ndviValue">0.71</div>
+              </div>
+
+              <div class="kpi">
+                <strong>Humedad del suelo</strong>
+                <div id="humedadValue">API externa</div>
+              </div>
+
+              <div class="kpi">
+                <strong>Riesgo de plaga</strong>
+                <div id="plagaValue">Moderado (Modelos Ministerio)</div>
+              </div>
+
+              <div class="kpi">
+                <strong>Previsión meteorológica</strong>
+                <div id="meteoValue">AEMET (48h sin lluvias)</div>
+              </div>
+            </div>
+
+            <div id="mapViewDiv"></div>
+          </div>
+        </div>
+
+        <!-- Página Análisis -->
+        <div id="page-analisis" class="page">
+          <div class="page-inner">
+            <h3>Análisis por capa</h3>
+            <p>Aquí puedes añadir gráficos, filtros y controles para:</p>
+            <ul>
+              <li>Imágenes de satélite y dron (NDVI, NDWI…)</li>
+              <li>Plagas y enfermedades (SIGPAC + cooperativa)</li>
+              <li>Humedad del suelo (sensores)</li>
+              <li>Índices de salinidad y calidad del suelo</li>
+              <li>Predicciones meteorológicas</li>
+            </ul>
+            <p>
+              Esta página puede tener subpestañas o acordeones por tipo de dato.
+            </p>
+          </div>
+        </div>
+
+        <!-- Página Tareas -->
+        <div id="page-tareas" class="page">
+          <div class="page-inner">
+            <h3>Tareas y Procesos</h3>
+            <p>Basado en “Tareas y Procesos” del documento.</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tarea</th>
+                  <th>Parcela</th>
+                  <th>Prioridad</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody id="tareasTableBody">
+                <tr>
+                  <td>Revisar foco de plaga</td>
+                  <td>Parcela 12</td>
+                  <td>Alta</td>
+                  <td>Pendiente</td>
+                </tr>
+                <tr>
+                  <td>Ajustar riego por baja humedad</td>
+                  <td>Parcela 7</td>
+                  <td>Media</td>
+                  <td>En curso</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Página Modelo de Datos -->
+        <div id="page-modelo" class="page">
+          <div class="page-inner">
+            <h3>Modelo de Datos</h3>
+            <p>Basado en las tablas del documento (“Dato / Fuente”).</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Dato</th>
+                  <th>Fuente</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Imágenes de satélite y objeto cercano</td>
+                  <td>Sentinel-2 Explorer / Imágenes de Dron</td>
+                </tr>
+                <tr>
+                  <td>Localización geográfica de plagas y enfermedades</td>
+                  <td>Cooperativa y Parcelario SIGPAC</td>
+                </tr>
+                <tr>
+                  <td>Modelos de predicción de aparición de plagas</td>
+                  <td>Guía del Ministerio de Agricultura</td>
+                </tr>
+                <tr>
+                  <td>Integración de sensores de humedad</td>
+                  <td>API Externa</td>
+                </tr>
+                <tr>
+                  <td>Índices de salinidad y calidad del suelo</td>
+                  <td>Mapas de Suelo (Living Atlas)</td>
+                </tr>
+                <tr>
+                  <td>Predicciones meteorológicas</td>
+                  <td>AEMET (Living Atlas) / API</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Página Ayuda -->
+        <div id="page-ayuda" class="page">
+          <div class="page-inner">
+            <h3>Ayuda y documentación</h3>
+            <p>Aquí puedes explicar:</p>
+            <ul>
+              <li>Cómo interpretar NDVI, humedad, salinidad…</li>
+              <li>Cómo se generan las alertas de plagas.</li>
+              <li>Limitaciones de los datos (resolución, frecuencia, etc.).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

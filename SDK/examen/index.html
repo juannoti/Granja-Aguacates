@@ -1,0 +1,36 @@
+<!-- Apartado 1. Configuración del Mapa  -->
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba Final SDK JNZ</title>
+
+    <script type="module" src="https://js.arcgis.com/5.0/"></script>
+
+    <script type="module" src="main.js" defer></script>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <arcgis-map basemap="dark-gray" center=" -3.7026, 40.4165" zoom="11">
+      <!-- Apartado 3. Mercados con Popups -->
+      <arcgis-popup slot="popup"></arcgis-popup>
+      <!-- Apartado 5. Web-components -->
+      <arcgis-layer-list slot="bottom-left"></arcgis-layer-list>
+      <arcgis-legend slot="bottom-right" legend-style="classic"></arcgis-legend>
+      <arcgis-basemap-toggle
+        slot="top-right"
+        next-basemap="topo-vector"
+      ></arcgis-basemap-toggle>
+    </arcgis-map>
+  </body>
+</html>

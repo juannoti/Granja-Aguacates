@@ -1,0 +1,26 @@
+.aplicacion-arcgis {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+  background-color: black;
+}
+
+.logo {
+  padding: 50px;
+}
+
+.aplicacion1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1,
+  h2,
+  a {
+    color: aliceblue;
+    font-family:
+      "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  }
+}

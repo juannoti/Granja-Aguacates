@@ -10,7 +10,7 @@ function App() {
         }
         titulo={"Experience Builder"}
         descripcion={"Descripción de Experience Builder"}
-        enlace={"Enlace de la App"}
+        enlace={"Enlace a Experience Builder"}
       ></AplicacionArcGIS>
 
       <AplicacionArcGIS
@@ -19,7 +19,7 @@ function App() {
         }
         titulo={"Story Maps"}
         descripcion={"Descripción de Story Maps"}
-        enlace={"Enlace de la App"}
+        enlace={"Enlace a Story Maps"}
       ></AplicacionArcGIS>
     </>
   );
